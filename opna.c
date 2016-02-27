@@ -147,22 +147,6 @@ opna_close(void)
  */
 
 /*
- * Busy wait
- */
-inline void
-opna_busy_wait(u_int32_t wait_usec)
-{
-        struct timeval start, now;
-
-        gettimeofday(&start, NULL);
-
-	do {
-        	gettimeofday(&now, NULL);
-	} while ((now.tv_sec - start.tv_sec) * 1000000
-	    + (now.tv_usec - start.tv_usec) < wait_usec);
-}
-
-/*
  * Register read/write
  */
 u_int8_t

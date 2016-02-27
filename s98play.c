@@ -63,13 +63,29 @@ struct s98_info_t {
 	struct s98_device_info_t	device_info;
 } s98_info;
 
+/*
+ * Busy wait
+ */
+inline void
+s98_busy_wait(u_int32_t wait_usec)
+{
+	struct timeval start, now;
+
+	gettimeofday(&start, NULL);
+
+	do {
+		gettimeofday(&now, NULL);
+	} while ((now.tv_sec - start.tv_sec) * 1000000
+	    + (now.tv_usec - start.tv_usec) < wait_usec);
+}
+
 void
 s98_wait_sync(u_int32_t sync)
 {
 	u_int32_t i;
 
 	for (i = 0; i < sync; i++)
-		opna_busy_wait(s98_info.timer_usec);
+		s98_busy_wait(s98_info.timer_usec);
 }
 
 int
@@ -158,7 +174,7 @@ s98_parse_header(FILE *fp)
 	s98_info.timer_usec = (timer_info * 1000000 / timer_info2) % 1000000;
 
 	/*
-	 * commpression method (should be 0)
+	 * compression method (should be 0)
 	 */
 	if (s98_read_4bytes(&compressing, fp) != 0)
 		errx(1, "data read failed");

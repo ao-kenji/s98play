@@ -23,7 +23,6 @@
 /* prototypes */
 int	opna_open(void);
 void	opna_close(void);
-void	opna_busy_wait(u_int32_t);
 u_int8_t	opna_read(u_int8_t);
 u_int8_t	opna_read_ex(u_int8_t);
 void	opna_write(u_int8_t, u_int8_t);
