@@ -3,6 +3,10 @@ s98play
 
 s98play - An S98 file player with PC-9801-86 sound board on OpenBSD/luna88k
 
+Supported sound cards
+---------------------
+- NEC PC-9801-86
+- MELCO WSN-A2F (graphics accelerator and sound board)
 
 Preparation
 -----------
