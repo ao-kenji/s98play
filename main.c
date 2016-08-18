@@ -63,19 +63,22 @@ main(int argc, char **argv)
 	}
 
 	opna_fd = opna_open();
-	if (opna_fd == -1) goto exit;
+	if (opna_fd == -1) goto exit1;
 
 	sound_fp = fopen(argv[0], "rb");
-	if (sound_fp == NULL) goto exit;
+	if (sound_fp == NULL) goto exit2;
 
 	s98_play(sound_fp);
 
+	fclose(sound_fp);
+
+	opna_close();
+
 	return 0;	/* success */
 
-exit:
-	if (opna_fd == -1)
-		opna_close();
-
+exit2:
+	opna_close();
+exit1:
 	return 1;	/* error */
 }
 
