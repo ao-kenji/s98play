@@ -21,6 +21,8 @@
 #include <err.h>
 #include <stdio.h>
 
+#include <sys/time.h>
+
 /*
  * S98 file specification can be found at:
  *  http://www.vesta.dti.ne.jp/~tsato/soft_s98v3.html
